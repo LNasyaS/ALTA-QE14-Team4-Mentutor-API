@@ -16,9 +16,10 @@ public class MentutorAPIAdmin {
 //    ADMIN
 
     @Step("Login as admin")
-    public void loginAsAdmin() {
+    public void loginAsAdmin(File json) {
         SerenityRest.given()
-                .headers("Authorization", MentutorResponsesAdmin.ADMIN_TOKEN)
+                .contentType(ContentType.JSON)
+                .body(json);
     }
 
     @Step("Register new user as admin")

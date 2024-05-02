@@ -26,10 +26,23 @@ public class AdminStepDef {
     String textResponse = "";
 
 //    LOGIN AS ADMIN
-
     @Given("User login as admin with valid {string}")
-    public void userLoginAsAdminWithValid(String arg0) {
+    public void userLoginAsAdminWithValid(String json) {
 
+        File jsonFile = new File(Constants.REQ_BODY + json);
+        mentutorAPIAdmin.registerNewUserAsAdmin(jsonFile);
+
+    }
+
+    @When("Send request login user as admin")
+    public void sendRequestLoginUserAsAdmin() {
+        Response response = SerenityRest.when()
+                .post(MentutorAPIAdmin.LOGIN_AS_ADMIN);
+        textResponse = response.asString();
+        JsonPath jsonPath = response.jsonPath();
+        String token = jsonPath.get("data.token");
+        System.out.println(token);
+        MentutorResponsesAdmin.ADMIN_TOKEN_1 = token;
     }
 
 //    REGISTER NEW USER VALID
@@ -45,10 +58,6 @@ public class AdminStepDef {
         Response response = SerenityRest.when()
                 .post(MentutorAPIAdmin.REGISTER_NEW_USERS_ADMIN);
         textResponse = response.asString();
-        JsonPath jsonPath = response.jsonPath();
-        String token = jsonPath.get("data.name");
-        System.out.println(token);
-        MentutorResponsesAdmin.ADMIN_TOKEN_1 = token;
     }
 
     @And("Response body should be name {string}")
@@ -70,6 +79,7 @@ public class AdminStepDef {
                 .body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
 
     }
+
 
 
 }
