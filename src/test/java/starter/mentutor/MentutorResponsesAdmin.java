@@ -1,12 +1,12 @@
 package starter.mentutor;
 
+import starter.stepdef.AdminStepDef;
+
 public class MentutorResponsesAdmin {
 
-//    public static String ADMIN_TOKEN_1 = "";
+    public static String ADMIN_TOKEN = "Bearer " + AdminStepDef.ADMIN_TOKEN;
 
-//    public static String ADMIN_TOKEN = "Bearer " + ADMIN_TOKEN_1 ;
-
-    public static String ADMIN_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZENsYXNzIjowLCJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3MTQ3MTY1NjIsInJvbGUiOiJhZG1pbiIsInVzZXJJZCI6MX0.AhO4uz6g4BaYBzmvEYKkZI0l07AuWX08dnxbhxW4D7Q" ;
+//    public static String ADMIN_TOKEN = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZENsYXNzIjowLCJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3MTQ3MTY1NjIsInJvbGUiOiJhZG1pbiIsInVzZXJJZCI6MX0.AhO4uz6g4BaYBzmvEYKkZI0l07AuWX08dnxbhxW4D7Q" ;
 
     public static String USER_NAME_ADMIN = "data.name";
 
@@ -28,6 +28,6 @@ public class MentutorResponsesAdmin {
 
     public static String CLASS_NAME_UPDATE_SUCCESS = "data.class_name";
 
-    public static String INVALID_MESSAGE_ADMIN = "message error";
+    public static String INVALID_MESSAGE_ADMIN = "/message error/";
 
 }

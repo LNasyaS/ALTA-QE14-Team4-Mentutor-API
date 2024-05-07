@@ -25,6 +25,8 @@ public class AdminStepDef {
 
     String textResponse = "";
 
+    public static String ADMIN_TOKEN;
+
 //    LOGIN AS ADMIN
     @Given("User login as admin with valid {string}")
     public void userLoginAsAdminWithValid(String json) {
@@ -39,10 +41,10 @@ public class AdminStepDef {
         Response response = SerenityRest.when()
                 .post(MentutorAPIAdmin.LOGIN_AS_ADMIN);
         textResponse = response.asString();
-//        JsonPath jsonPath = response.jsonPath();
-//        String token = jsonPath.get("data.token");
-//        System.out.println(token);
-//        MentutorResponsesAdmin.ADMIN_TOKEN_1 = token;
+        JsonPath jsonPath = response.jsonPath();
+        String token = jsonPath.get("data.token");
+        System.out.println("Token Admin: " + token);
+        ADMIN_TOKEN = token;
     }
 
 //    REGISTER NEW USER VALID
@@ -224,7 +226,7 @@ public class AdminStepDef {
 
     @And("Response body should be error message {string}")
     public void responseBodyShouldBeErrorMessage(String message) {
-        SerenityRest.and()
+        SerenityRest.and().log().all()
                 .body(MentutorResponsesAdmin.INVALID_MESSAGE_ADMIN, equalTo(message));
     }
 
