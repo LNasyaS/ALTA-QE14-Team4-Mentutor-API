@@ -20,7 +20,7 @@ public class MentutorAPIMentor {
 
     public static String UPDATE_TASK = Constants.BASE_URL + "mentors/tasks/25";
 
-    public static String DELETE_TASK = Constants.BASE_URL + "mentors/tasks/72";
+    public static String DELETE_TASK = Constants.BASE_URL + "mentors/tasks/75";
 
     public static String DELETEINVALID_TASK = Constants.BASE_URL + "mentors/tasks/#!@2";
 

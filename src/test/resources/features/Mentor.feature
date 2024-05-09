@@ -6,7 +6,7 @@ Feature: Mentor
 
   #Positive
   Scenario: Create posts with valid json
-    Given Create posts with valid json "LoginUserValid.json"
+    Given Create posts with valid json "LoginMentorValid.json"
     When  Send request post login
     Then Status code should be 200
     And validate posts json "LoginMentorJsonSchema.json"
@@ -128,10 +128,10 @@ Feature: Mentor
     When  Send request post login
     Then Status code should be 400
     Examples:
-      | JSON                                         |
-      | LoginUserInvalidEmail.json                   |
-      | LoginUserInvalidPassword.json                |
-      | LoginUserInvalidEmailAndInvalidPassword.json |
+      | JSON                                           |
+      | LoginMentorInvalidEmail.json                   |
+      | LoginMentorInvalidPassword.json                |
+      | LoginMentorInvalidEmailAndInvalidPassword.json |
 
 
 
