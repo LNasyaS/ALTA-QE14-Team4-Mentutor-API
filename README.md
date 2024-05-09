@@ -10,16 +10,8 @@ This is our manual test case spreadsheet [**link**](https://docs.google.com/spre
 
 ### Test Overall
 
-![Result test overall](/docs/ResultAll.jpg)
+![Result test overall](/docs/resultsAPI.PNG)
 
-### Test Coverage per Feature
-
-* Feature Projects
-  ![Result test overall](/docs/ResultProjects.jpg)
-* Feature Sections
-  ![Result test overall](/docs/ResultSection.jpg)
-* Feature Comments
-  ![Result test overall](/docs/ResultComments.jpg)
 
 ### Tools and Technology Stack
 
