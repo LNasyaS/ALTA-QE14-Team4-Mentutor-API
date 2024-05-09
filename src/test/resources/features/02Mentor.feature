@@ -55,7 +55,7 @@ Feature: Mentor
 
   #Positive
   Scenario: Update task with valid json
-    Given Update task with valid data due_date "2022-12-12"
+    Given Update task with valid data due_date "2024-12-12"
     When  Send request put update task
     Then Status ADD code should be 201
     And Validate json update schema "UpdateTaskSchema.json"

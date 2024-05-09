@@ -35,7 +35,6 @@ Feature: Mentee & forum
 #    Then Status code get should be code 400
 
 #assign all task
-  #Hanya bisa 1x request harus minta request kembali dari post man, mentor/task > mentees/submission/67
   Scenario: Assign task Mentee valid json
     Given Assign task Mentee with valid json "AssignTaskValidJson.json"
     When Sent request assign by mentee
