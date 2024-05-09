@@ -1,11 +1,11 @@
-@Projects
+@03Mentee
 Feature: Mentee & forum
 
 
 #login mentee
   Scenario: Login as Mentee
     Given Login user with email and password valid json "LoginUserValid.json"
-    When Send request post login
+    When Send request post mentee login
     Then Status code should be 200
     And Validate json schema "LoginEmailPasswordSchema.json"
 
@@ -82,7 +82,7 @@ Feature: Mentee & forum
 
   Scenario Outline: Post login user with invalid data
     Given : Login user with invalid "<JSON>"
-    When Send request post login
+    When Send request post mentee login
     Then Status code should be 400
     Examples:
       | JSON                                         |  |

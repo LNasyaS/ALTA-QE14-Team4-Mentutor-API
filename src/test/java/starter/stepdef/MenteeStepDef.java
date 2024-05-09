@@ -32,8 +32,8 @@ public class MenteeStepDef {
         mentutorAPIMentee.postLoginFeature(jsonFile);
     }
 
-    @When("Send request post login")
-    public void sendRequestPostLogin() {
+    @When("Send request post mentee login")
+    public void sendRequestPostMenteeLogin() {
         Response response = SerenityRest.when()
                 .post(MentutorAPIMentee.LOGIN_USER);
         textResponse = response.asString();
@@ -43,18 +43,18 @@ public class MenteeStepDef {
         MENTEE_TOKEN = token;
     }
 
-    @Then("Status code should be {int}")
-    public void statusCodeShouldBe(int statusShould) {
-        SerenityRest.then()
-                .statusCode(statusShould);
-    }
+//    @Then("Status code should be {int}")
+//    public void statusCodeShouldBe(int statusShould) {
+//        SerenityRest.then()
+//                .statusCode(statusShould);
+//    }
 
 
-    @And("Validate json schema {string}")
-    public void validateJsonSchema(String json) {
-        File jsonFile = new File(Constants.JSON_SCHEMA + json);
-        SerenityRest.and().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
-    }
+//    @And("Validate json schema {string}")
+//    public void validateJsonSchema(String json) {
+//        File jsonFile = new File(Constants.JSON_SCHEMA + json);
+//        SerenityRest.and().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+//    }
 
     @Given(": Login user with invalid {string}")
     public void loginUserWithInvalid(String json) {
@@ -75,16 +75,16 @@ public class MenteeStepDef {
                 .put(MentutorAPIMentee.UPDATE_USER);
     }
 
-    @And("Valide json schema {string}")
-    public void valideJsonSchema(String json) {
-        File jsonFile = new File (Constants.JSON_SCHEMA+ json);
-        SerenityRest.and().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
-    }
+//    @And("Valide json schema {string}")
+//    public void valideJsonSchema(String json) {
+//        File jsonFile = new File (Constants.JSON_SCHEMA+ json);
+//        SerenityRest.and().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+//    }
 
-    @Then("Status code and should be {int}")
-    public void statusCodeAndShouldBe(int statusCodeAnd){
-        SerenityRest.then().statusCode(statusCodeAnd);
-    }
+//    @Then("Status code and should be {int}")
+//    public void statusCodeAndShouldBe(int statusCodeAnd){
+//        SerenityRest.then().statusCode(statusCodeAnd);
+//    }
     //////////////////////////
     @Given("Update profile user as Mentee with other data name {string}, email {string}, password {string}, images {string}")
     public void updateProfileUserAsMenteeWithValidDataNameEmailPasswordImages(String name, String email, String password, String images){
@@ -151,7 +151,7 @@ public class MenteeStepDef {
     @Given("Assign task Mentee with invalid json {string}")
     public void addComentStatusWithInvalidJson(String JSON) {
         File jsonFile = new File(Constants.REQ_BODY + JSON);
-        mentutorAPIMentee.postAddInvalidFeature(jsonFile);
+        mentutorAPIMentee.postAssignInvalidFeature(jsonFile);
     }
 
 

@@ -4,6 +4,7 @@ import io.cucumber.java.et.Ja;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
+import starter.stepdef.MentorStepDef;
 import starter.utils.Constants;
 import java.io.File;
 import java.util.Map;
@@ -16,7 +17,7 @@ public class MentutorAPIMentee {
 
     public static String GET_ALL_TASK = Constants.BASE_URL + "mentees/tasks";
 
-    public static String ASSIGN_TASK = Constants.BASE_URL + "mentees/submission/67";
+    public static String ASSIGN_TASK = Constants.BASE_URL + "mentees/submission/{id}";
 
     public static String ADD_COMENT_STATUS = Constants.BASE_URL + "forum/1";
 
@@ -76,18 +77,20 @@ public class MentutorAPIMentee {
     public void postAssignFeature(File JSON) {
         SerenityRest.given()
                 .header("Authorization", MentutorResponseMentee.MENTEE_TOKEN)
-                .contentType(ContentType.JSON).body(JSON);
+                .contentType(ContentType.JSON).body(JSON)
+                .pathParam("id", MentorStepDef.TASK_ID);
     }
 
-    @Step("Assign task")
+    @Step("Assign task invalid")
     public void postAssignInvalidFeature(File JSON) {
         SerenityRest.given()
                 .header("Authorization", MentutorResponseMentee.MENTEE_TOKEN)
-                .contentType(ContentType.JSON).body(JSON);
+                .contentType(ContentType.JSON).body(JSON)
+                .pathParam("id", MentorStepDef.TASK_ID);
     }
 
     //Add coment
-    @Step("Assign task")
+    @Step("add comment")
     public void postAddFeature(File JSON) {
         SerenityRest.given()
                 .header("Authorization", MentutorResponseMentee.MENTEE_TOKEN)
@@ -95,7 +98,7 @@ public class MentutorAPIMentee {
     }
 
     //Add coment invalid
-    @Step("Assign task")
+    @Step("add  comment invalid")
     public void postAddInvalidFeature(File JSON) {
         SerenityRest.given()
                 .header("Authorization", MentutorResponseMentee.MENTEE_TOKEN)
@@ -103,14 +106,14 @@ public class MentutorAPIMentee {
     }
 
     //Forum get all task
-    @Step("Assign task")
+    @Step("get all task")
     public void getForumAddFeature() {
         SerenityRest.given()
                 .header("Authorization", MentutorResponseMentee.MENTEE_TOKEN);
     }
 
     //Forum get all task invalid
-    @Step("Assign task")
+    @Step("get all task invalid")
     public void getForumAddInvalidFeature() {
         SerenityRest.given()
                 .header("Authorization", MentutorResponseMentee.MENTEE_TOKEN);

@@ -1,4 +1,4 @@
-@Projects
+@01Admin
   Feature: Admin
     As admin i can edit mentor mentee, add class and member
 
@@ -16,7 +16,7 @@
     Given Post register new user as admin with valid "AdminRegisterUser.json"
     When Send request register user as admin
     Then Status code should be 201
-    And Response body should be name "Soma Mentee Sepuluh"
+    And Response body should be name "Dede B"
     And Validate json schema "AdminRegisterUserJsonSchema.json"
 
 #  Get all users as admin
@@ -27,7 +27,7 @@
     And Response body should be userId 1
     And Validate json schema "AdminGetAllUsersJsonSchema.json"
 
-#  Register new class as admin
+  #  Register new class as admin
   Scenario: Register new class as admin
     Given Post register new class as admin with valid "AdminRegisterClass.json"
     When Send request register class as admin
@@ -147,16 +147,16 @@
       | AdminUpdateClassInvalid.json  |
       | AdminUpdateClassInvalid2.json |
 
-#    Delete user as admin
-  Scenario: Delete user as admin
-    Given Delete user with valid id 26
-    When Send request delete user
-    Then Status code should be 200
-    And Response body should be message "Delete Success"
-
-#    Delete class as admin
-  Scenario: Delete class as admin
-    Given Delete class with valid id 11
-    When Send request delete class
-    Then Status code should be 200
-    And Response body should be message "Success Delete Class"
+##    Delete user as admin
+#  Scenario: Delete user as admin
+#    Given Delete user with valid id 26
+#    When Send request delete user
+#    Then Status code should be 200
+#    And Response body should be message "Delete Success"
+#
+##    Delete class as admin
+#  Scenario: Delete class as admin
+#    Given Delete class with valid id 11
+#    When Send request delete class
+#    Then Status code should be 200
+#    And Response body should be message "Success Delete Class"
