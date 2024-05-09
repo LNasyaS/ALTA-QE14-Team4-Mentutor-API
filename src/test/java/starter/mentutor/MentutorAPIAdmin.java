@@ -3,6 +3,7 @@ package starter.mentutor;
 import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
+import starter.stepdef.AdminStepDef;
 import starter.utils.Constants;
 
 import java.io.File;
@@ -124,16 +125,16 @@ public class MentutorAPIAdmin {
     }
 
     @Step("Delete user as admin")
-    public void setDeleteUserAdmin(int id_user) {
+    public void setDeleteUserAdmin() {
         SerenityRest.given()
                 .headers("Authorization", MentutorResponsesAdmin.ADMIN_TOKEN)
-                .pathParam("id_user", id_user);
+                .pathParam("id_user", AdminStepDef.ID_USER);
     }
 
     @Step("Delete class as admin")
-    public void setDeleteClassAdmin(int id_class) {
+    public void setDeleteClassAdmin() {
         SerenityRest.given()
                 .headers("Authorization", MentutorResponsesAdmin.ADMIN_TOKEN)
-                .pathParam("id_class", id_class);
+                .pathParam("id_class", AdminStepDef.ID_CLASS);
     }
 }

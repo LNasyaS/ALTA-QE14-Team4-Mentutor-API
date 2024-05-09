@@ -45,11 +45,11 @@ public class MentorStepDef {
         MENTOR_TOKEN = token;
     }
 
-    @Then("Status code should be {int}")
-    public void statusCodeShouldBe(int statusCode) {
-        SerenityRest.and()
-                .statusCode(statusCode);
-    }
+//    @Then("Status code should be {int}")
+//    public void statusCodeShouldBe(int statusCode) {
+//        SerenityRest.and()
+//                .statusCode(statusCode);
+//    }
 
     @And("validate posts json {string}")
     public void validatePostsJson(String json) {
@@ -138,12 +138,12 @@ public class MentorStepDef {
                 .get(MentutorAPIMentor.GET_ALL_TASK);
     }
 
-    @And("Validate json schema {string}")
-    public void validateJsonSchema(String json) {
-        File jsonFile = new File(Constants.JSON_SCHEMA+json);
-        SerenityRest.and()
-                .body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
-    }
+//    @And("Validate json schema {string}")
+//    public void validateJsonSchema(String json) {
+//        File jsonFile = new File(Constants.JSON_SCHEMA+json);
+//        SerenityRest.and()
+//                .body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+//    }
 
 
 //    Get Detail Task

@@ -1,4 +1,4 @@
-@Project
+@02Mentor
 Feature: Mentor
 
 
@@ -11,8 +11,6 @@ Feature: Mentor
     Then Status code should be 200
     And validate posts json "LoginMentorJsonSchema.json"
 
-
-
 #     Add Task
 
   #Positive
@@ -21,15 +19,6 @@ Feature: Mentor
     When  Send request post add task
     Then Status ADD code should be 201
     And validate add task json "AddTaskValidSchema.json"
-
-  #Negative
-  Scenario: Create posts with invalid json
-    Given Add task with invalid data title "TaskAPI", description "TaskTrialAPI", images "image.jpg", file "File.pdf", due_date "Tahun"
-    When  Send request post add task with invalid due_date
-    Then Status ADD code invalid due_date should be 400
-    And validate add invalid task json "AddTaskInvalidSchema.json"
-
-
 
 #    Get All Task
 
@@ -66,7 +55,7 @@ Feature: Mentor
 
   #Positive
   Scenario: Update task with valid json
-    Given Update task with valid data due_date "2022-12-12"
+    Given Update task with valid data due_date "2024-12-12"
     When  Send request put update task
     Then Status ADD code should be 201
     And Validate json update schema "UpdateTaskSchema.json"
@@ -112,7 +101,6 @@ Feature: Mentor
 
 #  Delete task
 
-
   #Negative
   Scenario: Delete invalid task by mentor
     Given Delete task with invalid task
@@ -134,9 +122,19 @@ Feature: Mentor
       | LoginMentorInvalidEmailAndInvalidPassword.json |
 
 
+##    Delete Task
+#
+#         #Positive
+#  Scenario: Delete task by mentor
+#    Given Delete task
+#    When Send request delete task
+#    Then Status code delete should be 201
 
-         #Positive
-  Scenario: Delete task by mentor
-    Given Delete task
-    When Send request delete task
-    Then Status code delete should be 201
+#    Add Task
+
+      #Negative
+  Scenario: Create posts with invalid json
+    Given Add task with invalid data title "TaskAPI", description "TaskTrialAPI", images "image.jpg", file "File.pdf", due_date "Tahun"
+    When  Send request post add task with invalid due_date
+    Then Status ADD code invalid due_date should be 400
+    And validate add invalid task json "AddTaskInvalidSchema.json"

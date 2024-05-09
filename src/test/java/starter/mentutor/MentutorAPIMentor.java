@@ -4,6 +4,7 @@ import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 import org.checkerframework.checker.units.qual.C;
+import starter.stepdef.MentorStepDef;
 import starter.utils.Constants;
 
 import java.io.File;
@@ -18,9 +19,9 @@ public class MentutorAPIMentor {
 
     public static String GET_DETAIL_TASK = Constants.BASE_URL + "mentors/tasks/{id}";
 
-    public static String UPDATE_TASK = Constants.BASE_URL + "mentors/tasks/25";
+    public static String UPDATE_TASK = Constants.BASE_URL + "mentors/tasks/{id}";
 
-    public static String DELETE_TASK = Constants.BASE_URL + "mentors/tasks/75";
+    public static String DELETE_TASK = Constants.BASE_URL + "mentors/tasks/{id}";
 
     public static String DELETEINVALID_TASK = Constants.BASE_URL + "mentors/tasks/#!@2";
 
@@ -92,21 +93,24 @@ public class MentutorAPIMentor {
         SerenityRest.given().log().all()
                 .header("Authorization", MentutorResponseMentor.MENTOR_TOKEN)
                 .multiPart("due_date", due_date)
-                .put(MentutorAPIMentor.UPDATE_TASK);
+                .pathParam("id", MentorStepDef.TASK_ID);
+//                .put(MentutorAPIMentor.UPDATE_TASK);
     }
 
     @Step("Update Without Authorization Task")
     public void putUpdateInvalidTask(String due_date) {
         SerenityRest.given().log().all()
                 .multiPart("due_date", due_date)
-                .put(MentutorAPIMentor.UPDATE_TASK);
+                .pathParam("id", MentorStepDef.TASK_ID);
+//                .put(MentutorAPIMentor.UPDATE_TASK);
     }
 
     //DELETE TASK
     @Step("Delete Task")
     public void setDeleteTask() {
         SerenityRest.given()
-                .header("Authorization", MentutorResponseMentor.MENTOR_TOKEN);
+                .header("Authorization", MentutorResponseMentor.MENTOR_TOKEN)
+                .pathParam("id", MentorStepDef.TASK_ID);
     }
 
     @Step("Delete with invalid task")

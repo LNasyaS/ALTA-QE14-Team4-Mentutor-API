@@ -14,6 +14,8 @@ import starter.mentutor.MentutorResponsesAdmin;
 import starter.utils.Constants;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 
 import static org.hamcrest.Matchers.equalTo;
@@ -26,6 +28,10 @@ public class AdminStepDef {
     String textResponse = "";
 
     public static String ADMIN_TOKEN;
+
+    public static int ID_CLASS;
+
+    public static int ID_USER;
 
 //    LOGIN AS ADMIN
     @Given("User login as admin with valid {string}")
@@ -93,6 +99,32 @@ public class AdminStepDef {
         Response response = SerenityRest.when()
                 .get(MentutorAPIAdmin.GET_ALL_USERS_ADMIN);
         textResponse = response.asString();
+        JsonPath jsonPath = response.jsonPath();
+
+        // Mendapatkan data JSON dalam bentuk list
+        List<Map<String, Object>> dataList = jsonPath.getList("data");
+
+        // Mendapatkan jumlah data dalam list
+        int dataSize = dataList.size();
+
+        // Mencari id terakhir dengan role "mentee"
+        int lastMenteeId = -1; // Inisialisasi dengan nilai default
+        for (int i = dataSize - 1; i >= 0; i--) {
+            Map<String, Object> data = dataList.get(i);
+            String role = (String) data.get("role");
+            if ("mentee".equals(role)) {
+                lastMenteeId = (Integer) data.get("id_user");
+                break;
+            }
+        }
+
+        if (lastMenteeId != -1) {
+            System.out.println("ID Mentee terakhir: " + lastMenteeId);
+        } else {
+            System.out.println("Tidak ada Mentee.");
+        }
+
+        ID_USER = lastMenteeId;
     }
 
     @And("Response body should be userId {int}")
@@ -135,6 +167,25 @@ public class AdminStepDef {
         Response response = SerenityRest.when()
                 .get(MentutorAPIAdmin.GET_ALL_CLASS_ADMIN);
         textResponse = response.asString();
+
+
+        JsonPath jsonPath = response.jsonPath();
+
+        // Mendapatkan data JSON dalam bentuk list
+        List<Map<String, Object>> dataList = jsonPath.getList("data");
+
+        // Mendapatkan jumlah data dalam list
+        int dataSize = dataList.size();
+
+        // Mengekstrak id_class terakhir
+        if (dataSize > 0) {
+            Map<String, Object> lastData = dataList.get(dataSize - 1);
+            ID_CLASS = (Integer) lastData.get("id_class");
+            System.out.println("ID Class terakhir: " + ID_CLASS);
+        } else {
+            System.out.println("Tidak ada data.");
+        }
+
     }
 
     @And("Response body should be classId {int}")
@@ -269,9 +320,9 @@ public class AdminStepDef {
     }
 
 //    DELETE USER AS ADMIN
-    @Given("Delete user with valid id {int}")
-    public void deleteUserWithValidId(int id_user) {
-        mentutorAPIAdmin.setDeleteUserAdmin(id_user);
+    @Given("Delete user with valid id")
+    public void deleteUserWithValidId() {
+        mentutorAPIAdmin.setDeleteUserAdmin();
     }
 
     @When("Send request delete user")
@@ -282,9 +333,9 @@ public class AdminStepDef {
     }
 
 //    DELETE CLASS AS ADMIN
-    @Given("Delete class with valid id {int}")
-    public void deleteClassWithValidId(int id_class) {
-        mentutorAPIAdmin.setDeleteClassAdmin(id_class);
+    @Given("Delete class with valid id")
+    public void deleteClassWithValidId() {
+        mentutorAPIAdmin.setDeleteClassAdmin();
     }
 
     @When("Send request delete class")
